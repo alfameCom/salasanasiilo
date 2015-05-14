@@ -1,4 +1,22 @@
 /*
+    Copyright 2015 Alfame Systems Oy
+
+    This file is part of salasanasiilo.
+
+    Salasanasiilo is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    Salasanasiilo is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with salasanasiilo. If not, see <http://www.gnu.org/licenses/>
+*/
+/*
     Copyright 2008-2013 Josh Drummond
 
     This file is part of WebPasswordSafe.
@@ -86,7 +104,7 @@ public class PasswordDialog extends Window implements PermissionListener
         this.setLayout(new AbsoluteLayout());
         this.setSize(430, 415);
         this.setResizable(false);
-        
+
         LabelField lblfldName = new LabelField(textMessages.title_());
         add(lblfldName, new AbsoluteData(7, 6));
 
@@ -97,7 +115,7 @@ public class PasswordDialog extends Window implements PermissionListener
 
         LabelField lblfldUsername = new LabelField(textMessages.username_());
         add(lblfldUsername, new AbsoluteData(7, 34));
-        
+
         usernameTextBox = new TextField<String>();
         usernameTextBox.setReadOnly(isPasswordReadOnly);
         add(usernameTextBox, new AbsoluteData(82, 34));
@@ -105,7 +123,7 @@ public class PasswordDialog extends Window implements PermissionListener
 
         LabelField lblfldPassword = new LabelField(textMessages.password_());
         add(lblfldPassword, new AbsoluteData(7, 62));
-        
+
         passwordTextBox = new TextField<String>();
         passwordTextBox.setReadOnly(isPasswordReadOnly);
         add(passwordTextBox, new AbsoluteData(82, 62));
@@ -120,7 +138,7 @@ public class PasswordDialog extends Window implements PermissionListener
         generateButton.setEnabled(!isPasswordReadOnly);
         add(generateButton, new AbsoluteData(82, 90));
         generateButton.setSize("127px", "22px");
-        
+
         Button currentButton = new Button(textMessages.currentPassword(), new SelectionListener<ButtonEvent>()
         {
             @Override
@@ -147,7 +165,7 @@ public class PasswordDialog extends Window implements PermissionListener
 
         LabelField lblfldTags = new LabelField(textMessages.tags_());
         add(lblfldTags, new AbsoluteData(6, 118));
-            
+
         tagsComboBox = new TextHelperComboBox<TagData>();
         tagsComboBox.setReadOnly(isPasswordReadOnly);
         add(tagsComboBox, new AbsoluteData(82, 118));
@@ -161,15 +179,15 @@ public class PasswordDialog extends Window implements PermissionListener
 
         LabelField lblfldNotes = new LabelField(textMessages.notes_());
         add(lblfldNotes, new AbsoluteData(6, 146));
-        
+
         notesTextArea = new TextArea();
         notesTextArea.setReadOnly(isPasswordReadOnly);
         add(notesTextArea, new AbsoluteData(82, 146));
         notesTextArea.setSize("331px", "75px");
-        
+
         LabelField lblfldMaxHistory = new LabelField(textMessages.maxHistory_());
         add(lblfldMaxHistory, new AbsoluteData(6, 227));
-        
+
         maxHistoryTextBox = new NumberField();
         maxHistoryTextBox.setReadOnly(isPasswordReadOnly);
         maxHistoryTextBox.setPropertyEditorType(Integer.class);
@@ -178,13 +196,13 @@ public class PasswordDialog extends Window implements PermissionListener
 
         LabelField lblfldInfinite = new LabelField(textMessages.infinite());
         add(lblfldInfinite, new AbsoluteData(164, 227));
-        
+
         activeCheckBox = new CheckBox();
         activeCheckBox.setReadOnly(isPasswordReadOnly);
         activeCheckBox.setBoxLabel(textMessages.active());
         add(activeCheckBox, new AbsoluteData(82, 255));
-        
-        Button editPermissionsButton = new Button(isPasswordGrantable ? 
+
+        Button editPermissionsButton = new Button(isPasswordGrantable ?
                 textMessages.editPermissions() : textMessages.viewPermissions(),
                 new SelectionListener<ButtonEvent>()
         {
@@ -195,8 +213,8 @@ public class PasswordDialog extends Window implements PermissionListener
         });
         add(editPermissionsButton, new AbsoluteData(82, 283));
         editPermissionsButton.setSize("260px", "22px");
-        
-        Button accessAuditButton = new Button(textMessages.viewAccessAuditLog(), 
+
+        Button accessAuditButton = new Button(textMessages.viewAccessAuditLog(),
                 new SelectionListener<ButtonEvent>()
         {
             @Override
@@ -223,11 +241,11 @@ public class PasswordDialog extends Window implements PermissionListener
                 doCancel();
             }
         });
-        
+
         setButtonAlign(HorizontalAlignment.CENTER);
         addButton(saveButton);
         addButton(cancelButton);
-        
+
         doLoadTags();
     }
 
@@ -237,18 +255,18 @@ public class PasswordDialog extends Window implements PermissionListener
         super.show();
         setFields();
     }
-    
+
     private void doViewPasswordHistory()
     {
         new PasswordHistoryDialog(password).show();
     }
-    
-    
+
+
     private void doViewAccessAuditLog()
     {
         new PasswordAccessAuditDialog(password).show();
     }
-    
+
     private void doGetCurrentPassword()
     {
         AsyncCallback<String> callback = new AsyncCallback<String>()
@@ -358,6 +376,14 @@ public class PasswordDialog extends Window implements PermissionListener
         }
     }
 
+    @Override
+    public void hide() {
+    	if (tagLoadListener instanceof PasswordSearchPanel) {
+    		((PasswordSearchPanel) tagLoadListener).doSearch();
+    	}
+    	super.hide();
+    }
+
     private boolean validateFields()
     {
         if (Utils.safeString(nameTextBox.getValue()).equals(""))
@@ -424,7 +450,7 @@ public class PasswordDialog extends Window implements PermissionListener
         };
         UserService.Util.getInstance().getSubjects(true, callback);
     }
-    
+
     private void doShowPermissionDialog(List<Subject> subjects)
     {
         new PermissionDialog(this, password, subjects).show();
@@ -457,7 +483,7 @@ public class PasswordDialog extends Window implements PermissionListener
             password.addPermission(permission);
         }
     }
-    
+
     private void doLoadTags()
     {
         AsyncCallback<List<Tag>> callback = new AsyncCallback<List<Tag>>()
@@ -475,7 +501,7 @@ public class PasswordDialog extends Window implements PermissionListener
         };
         PasswordService.Util.getInstance().getAllTags(callback);
     }
-    
+
     private void refreshTags(List<Tag> tags)
     {
         tagStore.removeAll();
@@ -484,7 +510,7 @@ public class PasswordDialog extends Window implements PermissionListener
             tagStore.add(new TagData(tag));
         }
     }
-    
+
     private class TagData extends BaseModel
     {
         private static final long serialVersionUID = 1L;
@@ -496,7 +522,7 @@ public class PasswordDialog extends Window implements PermissionListener
             set(Constants.TAG, tag);
         }
     }
-    
+
     private class TextHelperComboBox<D extends ModelData> extends ComboBox<D>
     {
         @Override
@@ -522,7 +548,7 @@ public class PasswordDialog extends Window implements PermissionListener
 
             super.doQuery(q, forceAll);
         }
-        
+
         @Override
         public void setValue(D value)
         {
@@ -544,7 +570,7 @@ public class PasswordDialog extends Window implements PermissionListener
             s += value.get(Constants.NAME);
             super.setRawValue(s);
         }
-        
+
         @Override
         public void selectAll()
         {

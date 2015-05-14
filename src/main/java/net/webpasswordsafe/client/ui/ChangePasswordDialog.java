@@ -1,4 +1,22 @@
 /*
+    Copyright 2015 Alfame Systems Oy
+
+    This file is part of salasanasiilo.
+
+    Salasanasiilo is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    Salasanasiilo is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with salasanasiilo. If not, see <http://www.gnu.org/licenses/>
+*/
+/*
     Copyright 2008-2011 Josh Drummond
 
     This file is part of WebPasswordSafe.
@@ -50,14 +68,14 @@ public class ChangePasswordDialog extends Window
 
     private TextField<String> password1;
     private TextField<String> password2;
-    private FormData formData = new FormData("-20"); 
+    private FormData formData = new FormData("-20");
     private final static TextMessages textMessages = GWT.create(TextMessages.class);
 
     public ChangePasswordDialog()
     {
         this.setHeading(textMessages.changePassword());
         this.setModal(true);
-        
+
         FormPanel form = new FormPanel();
         form.setHeaderVisible(false);
         form.setFrame(true);
@@ -91,7 +109,7 @@ public class ChangePasswordDialog extends Window
             }
         });
         form.add(password2, formData);
-        
+
         Button okayButton = new Button(textMessages.okay(), new SelectionListener<ButtonEvent>() {
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -129,7 +147,7 @@ public class ChangePasswordDialog extends Window
             doChangePassword(Utils.safeString(password1.getValue()));
         }
     }
-    
+
     private boolean validateFields()
     {
         if (!(Utils.safeString(password2.getValue())).equals(Utils.safeString(password1.getValue())))
