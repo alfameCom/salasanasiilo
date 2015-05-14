@@ -1,4 +1,22 @@
 /*
+    Copyright 2015 Alfame Systems Oy
+
+    This file is part of salasanasiilo.
+
+    Salasanasiilo is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    Salasanasiilo is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with salasanasiilo. If not, see <http://www.gnu.org/licenses/>
+*/
+/*
     Copyright 2011-2013 Josh Drummond
 
     This file is part of WebPasswordSafe.
@@ -24,7 +42,7 @@ import com.google.gwt.i18n.client.Messages;
 
 /**
  * Internationalization Messages Bundle
- * 
+ *
  * @author Josh Drummond
  *
  */
@@ -212,7 +230,7 @@ public interface TextMessages extends Messages
 
     @DefaultMessage("Must enter Name")
     String mustEnterName();
-    
+
     @DefaultMessage("Must enter Password")
     String mustEnterPassword();
 
@@ -459,10 +477,10 @@ public interface TextMessages extends Messages
     @DefaultMessage("View Permissions")
     String viewPermissions();
 
-    @DefaultMessage("WebPasswordSafe")
+    @DefaultMessage("Salasanasiilo")
     String webpasswordsafe();
 
-    @DefaultMessage("WebPasswordSafe v{0}")
+    @DefaultMessage("Salasanasiilo v{0}")
     String webpasswordsafeTitle(String version);
-    
+
 }

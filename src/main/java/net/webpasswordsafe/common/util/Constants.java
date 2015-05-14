@@ -1,4 +1,22 @@
 /*
+    Copyright 2015 Alfame Systems Oy
+
+    This file is part of salasanasiilo.
+
+    Salasanasiilo is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    Salasanasiilo is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with salasanasiilo. If not, see <http://www.gnu.org/licenses/>
+*/
+/*
     Copyright 2009-2013 Josh Drummond
 
     This file is part of WebPasswordSafe.
@@ -22,23 +40,23 @@ package net.webpasswordsafe.common.util;
 
 /**
  * Common constants
- * 
+ *
  * @author Josh Drummond
  *
  */
 public class Constants
 {
     // versioning
-    public static final String VERSION = "1.3";
-    public static final String COPYRIGHT = "2008-2013 Josh Drummond";
-    public static final String URL_WEBPASSWORDSAFE = "http://www.webpasswordsafe.net";
+    public static final String VERSION = "1.0-SNAPSHOT";
+    public static final String COPYRIGHT = "2015 Alfame Systems Oy";
+    public static final String URL_WEBPASSWORDSAFE = "https://github.com/alfameCom/salasanasiilo";
     public static final String URL_HELP =  "docs/UserGuide.html";
     public static final String URL_LICENSE = "docs/license.txt";
-    
+
     // hardcoded names
     public static final String ADMIN_USER_NAME = "admin";
     public static final String EVERYONE_GROUP_NAME = "Everyone";
-    
+
     // unique tokens
     public static final String SESSION_KEY_USERNAME = "X-WPS-Username";
     public static final String SESSION_KEY_ROLES = "X-WPS-Roles";
@@ -51,7 +69,7 @@ public class Constants
     public static final String REPORT_PARAM_PREFIX = "p_";
     public static final String REPORT_TYPE_PDF = "pdf";
     public static final String REPORT_TYPE_CSV = "csv";
-    
+
     // widget/report/rest fields
     public static final String ID = "id";
     public static final String FULLNAME = "fullname";
@@ -79,7 +97,7 @@ public class Constants
     public static final String TYPE = "type";
     public static final String BOOLEAN = "boolean";
     public static final String TEXT = "text";
-    
+
     // enums
     public enum Match { OR, AND };
     public enum Role { ROLE_USER, ROLE_ADMIN };
