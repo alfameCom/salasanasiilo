@@ -1,0 +1,8 @@
+WebPasswordSafe Binary Dependencies Included:
+
+ExtGWT 2.2.5 (http://www.sencha.com/products/extgwt/download/ext-gwt-2.2.5/195)
+GNU GPL license v3
+
+GWT-SL 1.1 (http://sourceforge.net/projects/gwt-widget/)
+Apache License V2.0
+
