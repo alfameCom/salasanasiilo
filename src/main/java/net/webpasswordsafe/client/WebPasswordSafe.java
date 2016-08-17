@@ -302,8 +302,11 @@ public class WebPasswordSafe implements EntryPoint, MainWindow, LoginWindow
                     }
                 }));
             }
-            adminUser.setSubMenu(adminUserMenu);
-            adminMenu.add(adminUser);
+            if (clientSessionUtil.isAuthorized(Function.ADD_USER) || clientSessionUtil.isAuthorized(Function.UPDATE_USER))
+            {
+            	adminUser.setSubMenu(adminUserMenu);
+                adminMenu.add(adminUser);
+            }
             
             MenuItem adminGroup = new MenuItem(textMessages.groups());
             Menu adminGroupMenu = new Menu();
@@ -325,9 +328,12 @@ public class WebPasswordSafe implements EntryPoint, MainWindow, LoginWindow
                     }
                 }));
             }
-            adminGroup.setSubMenu(adminGroupMenu);
-            adminMenu.add(adminGroup);
-
+            if (clientSessionUtil.isAuthorized(Function.ADD_GROUP) || clientSessionUtil.isAuthorized(Function.UPDATE_GROUP))
+            {
+            	adminGroup.setSubMenu(adminGroupMenu);
+            	adminMenu.add(adminGroup);
+            }
+            
             MenuItem adminTools = new MenuItem(textMessages.tools());
             Menu adminToolsMenu = new Menu();
             if (clientSessionUtil.isAuthorized(Function.UNBLOCK_IP))
@@ -338,9 +344,10 @@ public class WebPasswordSafe implements EntryPoint, MainWindow, LoginWindow
                         doUnblockIP();
                     }
                 }));
+                
+                adminTools.setSubMenu(adminToolsMenu);
+                adminMenu.add(adminTools);
             }
-            adminTools.setSubMenu(adminToolsMenu);
-            adminMenu.add(adminTools);
             
             mainMenu.add(new MenuBarItem(textMessages.admin(), adminMenu));
         }

@@ -48,9 +48,7 @@ public class DefaultAuthorizer implements Authorizer
         
         if ((user != null) && (action != null))
         {
-            if (action.equals(Function.ADD_GROUP.name()) ||
-                action.equals(Function.UPDATE_GROUP.name()) ||
-                action.equals(Function.DELETE_GROUP.name()) ||
+            if (action.equals(Function.DELETE_GROUP.name()) ||
                 action.equals(Function.ADD_USER.name()) ||
                 action.equals(Function.UPDATE_USER.name()) ||
                 (allowAdminBypassPasswordPermissions && action.equals(Function.BYPASS_PASSWORD_PERMISSIONS.name())) ||
@@ -59,7 +57,9 @@ public class DefaultAuthorizer implements Authorizer
             {
                 isAuthorized = user.getRoles().contains(Role.ROLE_ADMIN);
             }
-            else if (action.equals(Function.ADD_PASSWORD.name()) ||
+            else if (action.equals(Function.ADD_GROUP.name()) ||
+                action.equals(Function.UPDATE_GROUP.name()) ||
+                action.equals(Function.ADD_PASSWORD.name()) ||
                 action.equals(Function.ADD_TEMPLATE.name()) ||
                 action.equals(Function.UPDATE_TEMPLATE.name()))
             {
